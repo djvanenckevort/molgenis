@@ -3,9 +3,7 @@
     <div class="col">
       <div class="row" v-for="memberRow in memberRows">
         <div class="col-4" v-for="member in memberRow">
-          <members-grid-body-card :type="usersGroupsMap[member.id].type" :id="member.id"
-                                  :label="usersGroupsMap[member.id].label"
-                                  :role="roleMap[member.role]"></members-grid-body-card>
+          <members-grid-body-card v-bind="member"></members-grid-body-card>
         </div>
       </div>
     </div>
@@ -19,20 +17,8 @@
   export default {
     name: 'members-grid-body',
     computed: {
-      ...mapGetters({usersGroups: 'getUsersGroups'}),
-      ...mapState(['roles', 'members']),
-      usersGroupsMap: function () {
-        return this.usersGroups.reduce(function (map, obj) {
-          map[obj.id] = obj
-          return map
-        }, {})
-      },
-      roleMap: function () {
-        return this.roles.reduce(function (map, obj) {
-          map[obj.id] = obj
-          return map
-        }, {})
-      },
+      ...mapGetters(['members']),
+      ...mapState(['roles']),
       memberRows: function () {
         let memberRows = []
         const size = 3

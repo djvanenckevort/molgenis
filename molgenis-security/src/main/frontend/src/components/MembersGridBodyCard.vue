@@ -5,7 +5,7 @@
         <div class="col text-center">
           <i :class="['fa', type === 'user' ? 'fa-user' : 'fa-users', 'fa-4x']" aria-hidden="true"
              @click="editMember(type, id)"></i>
-          <p>{{ label }}<br>({{ role.label }})</p>
+          <p>{{ label }}<br>({{ role }})</p>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
         required: true
       },
       role: {
-        type: Object,
+        type: String,
         required: true
       }
     },
